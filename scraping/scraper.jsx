@@ -1,6 +1,8 @@
 //Recipe Scraping
-const recipeScraper = require("recipe-scraper");
+import { recipeScraper } from 'recipe-scraper'
 
 async function getRecipies(url) {
     return recipe = await recipeScraper(url);
 }
+
+export default getRecipies();

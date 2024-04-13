@@ -2,33 +2,54 @@ import { Input } from "@nextui-org/react";
 import { SearchIcon } from "./SearchIcon";
 import { Button, ButtonGroup } from "@nextui-org/react";
 import { useState } from 'react'
-
-async function getResults(searchUrl) {
-    const url = `https://google-web-search1.p.rapidapi.com/?query=${searchUrl}&limit=20&related_keywords=true`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '384b899e23mshce51891a615206ep1f146fjsndb38aa451231',
-            'X-RapidAPI-Host': 'google-web-search1.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const response = await fetch(url, options);
-        const result = await response.text();
-        console.log(result);
-    } catch (error) {
-        console.error(error);
-    }
-
-    const data = await response.json();
-}
+// import getRecipies from "../scraping/scraper";
 
 function Search() {
 
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState([]);
     const [query, setQuery] = useState('');
+    const [urls, setUrls] = useState([]);
+
+    const scrapeResults = async (result) => {
+        let re = result.results;
+        re.map((r, index) => {
+            let prevResults = results;
+            prevResults[index] = r.url;
+            setUrls(prevResults);
+        })
+        console.log(urls);
+
+    };
+
+    const getResults = async () => {
+        if (document.getElementById('search') != null) {
+            setLoading(true);
+
+            const searchUrl = document.getElementById('search').value
+
+            const url = `https://google-web-search1.p.rapidapi.com/?query=${searchUrl}%20recipe&limit=20&related_keywords=true`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': '384b899e23mshce51891a615206ep1f146fjsndb38aa451231',
+                    'X-RapidAPI-Host': 'google-web-search1.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+
+                //Call function to do web-scraping
+                scrapeResults(result);
+                console.log(result);
+            } catch (error) {
+                console.error(error);
+            }
+            setLoading(false);
+        }
+    }
 
     return(
         <div className="flex w-full flex-wrap md:flex-nowrap gap-4 padding-4px">
@@ -63,7 +84,7 @@ function Search() {
                     <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
                 }
             />
-                <Button onClick={getResults.bind(this, document.getElementById('search').value)} type="button" color='primary'>
+                <Button onClick={getResults.bind(this)} type="button" color='primary' isLoading={loading ? true : false}>
                 Search
             </Button>
             </form>
