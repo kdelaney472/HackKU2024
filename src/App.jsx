@@ -13,6 +13,7 @@ function App() {
     <>
       <NextUIProvider>
         <Search/>
+        <Vision/>
       </NextUIProvider>
      
     </>
