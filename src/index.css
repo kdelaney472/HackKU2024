@@ -3,8 +3,10 @@
   line-height: 1.5;
   font-weight: 400;
 
+  height:auto;
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(125, 125, 125, 0.87);
   background-color: #242424;
 
   font-synthesis: none;
@@ -30,6 +32,7 @@ body {
   vertical-align: middle;
   min-width: 320px;
   min-height: 100vh;
+  background-color: rgb(0, 0, 31);
 }
 
 h1 {
