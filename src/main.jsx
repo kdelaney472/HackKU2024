@@ -7,11 +7,13 @@ import { NextUIProvider } from "@nextui-org/react";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <NextUIProvider>
-    <ContextProvider>
-      <React.StrictMode>
+  
+    
+  <React.StrictMode>
+    {/* <ContextProvider> */}
+      <NextUIProvider>
         <App />
-      </React.StrictMode>
-    </ContextProvider>
-  </NextUIProvider>,
+      </NextUIProvider>
+    {/* </ContextProvider> */}
+  </React.StrictMode>,
 )
