@@ -51,7 +51,7 @@ function ImageSubmit() {
  
     return (
         <div>
-            <div  className="imageSel" onClick={()=>{document.getElementById("fileInput").click();}}>
+            <div className="imageSel" onClick={()=>{document.getElementById("fileInput").click();}}>
                 <input id="fileInput" type="file" style={{ display: "none" }} onChange={(e)=>{
                     console.log(e.target.files);
                     const file = e.target.files[0];
@@ -73,7 +73,7 @@ function ImageSubmit() {
                 }} />
                 {imgFile && (
                     <div>
-                        <Image src={imgFile} />
+                        <Image src={imgFile} style={{ maxHeight: '45vh' }}/>
                     </div>
                 )}
                 {!imgFile && (
@@ -92,6 +92,10 @@ function ImageSubmit() {
                     overflow: hidden;
                     margin: 0% 5% 0% 5%;
                     background: rgba(70,92,118,0.2);
+                    transition: background-color 0.2s ease-in-out;
+                }
+                .imageSel:hover{
+                    background-color: rgba(100,122,148,0.4);
                 }
                     .placeholder {
                     color: #444;
