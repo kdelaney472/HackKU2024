@@ -7,6 +7,7 @@ import Results from "./Results";
 import env from '../GoogleCloud_API_KEY.json' //store your key here locally (DO NOT PUSH TO GITHUB)
 import { useContext } from "react";
 import DataContext from "./DataContext";
+import Logo from "./assets/logo.png"
 
 function Search() {
 
@@ -76,6 +77,10 @@ function Search() {
     }
 
     return(
+        <div>
+        <div className="flex mb-10">
+            <img src={Logo} />
+        </div>
         <div className="flex justify-center w-100">
             <div className="flex w-100 flex-wrap md:flex-nowrap padding-4px">
                 <form onSubmit='return false' className="flex items-center w-80 space-x-4">
@@ -114,6 +119,7 @@ function Search() {
                 </Button>                    
                 </form>
             </div>
+        </div>
         </div>
     );
 

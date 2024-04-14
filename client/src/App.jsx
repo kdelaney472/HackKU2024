@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Search from './Search'
 import Results from './Results'
 import DataContext from './DataContext'
@@ -48,7 +46,7 @@ function App() {
           <div
             style={{
               height:"20vh",
-              margin: "20% 10% 0% 10%",
+              margin: "20% 10% 20% 10%",
             }}
           >
             <Search/>
