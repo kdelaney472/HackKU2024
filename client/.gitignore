@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+GoogleCloud_API_KEY.json
+HuggingFace_API_KEY.json

@@ -4,6 +4,7 @@ import { Button, ButtonGroup } from "@nextui-org/react";
 import { useState, useEffect } from 'react'
 import doFetch from "../scraping/scraper";
 import Results from "./Results";
+import env from '../GoogleCloud_API_KEY.json' //store your key here locally (DO NOT PUSH TO GITHUB)
 
 function Search() {
 
@@ -21,7 +22,7 @@ function Search() {
     const [peanuts, setPeanuts] = useState(0);
     const [data, isData] = useState(false);
 
-    const apiKey = 'AIzaSyDLHB14T8kw2cAv7ettWohoEmBlHEsujSY';
+    const apiKey = env.API_KEY;
     const cx = '055b432b27df04bc1';
     const numResults = 20;
 
