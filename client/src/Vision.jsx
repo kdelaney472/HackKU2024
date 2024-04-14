@@ -31,13 +31,13 @@ function ImageSubmit() {
     if (foodLabels != []) {
         foodLabels.map((foodInfo, id) => {
             if(foodInfo.label == "Bread"){
-                setGluten(Math.round(foodInfo.score * 10));
+                setGluten(Math.min(2 * Math.round(foodInfo.score * 10), 10));
             }
             if(foodInfo.label == "Seafood"){
-                setShellfish(Math.round(foodInfo.score * 10));
+                setShellfish(Math.min(2 * Math.round(foodInfo.score * 10), 10));
             }
             if(foodInfo.label == "Dairy"){
-                setDairy(Math.round(foodInfo.score * 10));
+                setDairy(Math.min(2 * Math.round(foodInfo.score * 10), 10));
             }
         })
         toggleData(true);
@@ -69,6 +69,7 @@ function ImageSubmit() {
                     setGluten(0);
                     setShellfish(0);
                     toggleData(false);
+                    setLabels([]);
                 }} />
                 {imgFile && (
                     <div>

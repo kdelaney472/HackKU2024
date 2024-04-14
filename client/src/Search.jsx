@@ -16,7 +16,6 @@ function Search() {
 
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState([]);
-    const [query, setQuery] = useState('');
     const [urls, setUrls] = useState([]);
     const [stats, setStats] = useState(null);
 
@@ -24,14 +23,13 @@ function Search() {
 
     const apiKey = env.API_KEY;
     const cx = '055b432b27df04bc1';
-    const numResults = 20;
 
     useEffect( () => {
-        console.log(stats);
-        let d = 0; 
-        let g = 0; 
-        let p = 0;
-        if(stats) {
+        console.log(stats); // This might log an empty array the first time
+        if (stats?.length > 0) {
+            let d = 0;
+            let g = 0;
+            let p = 0;
             stats.forEach(item => {
                 g = Math.max(g, item.gluten);
                 d = Math.max(d, item.dairy);
@@ -41,6 +39,8 @@ function Search() {
             setGluten(g);
             setShellfish(p);
             toggleData(true);
+        } else {
+            toggleData(false);
         }
         
     }, [stats]);
@@ -68,10 +68,12 @@ function Search() {
 
                 //Call function to do web-scraping
                 scrapeResults(result);
+                if(result){
+                    setLoading(false);
+                }
             } catch (error) {
                 console.error(error);
             }
-            setLoading(false);
         }
     }
 

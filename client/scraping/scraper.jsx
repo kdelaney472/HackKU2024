@@ -4,7 +4,7 @@ async function getRecipies(url) {
 
     try {
         var tmp = encodeURIComponent(JSON.stringify(url));
-        const response = await fetch(`https://allergix-107f0744c218.herokuapp.com/scrape-recipe?array=${tmp}`, {
+        const response = await fetch(`http://localhost:5000/scrape-recipe?array=${tmp}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
