@@ -2,7 +2,7 @@
   "name": "hackku2024-project",
   "private": true,
   "version": "0.0.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://allergix-107f0744c218.herokuapp.com",
   "type": "module",
   "scripts": {
     "start-client": "vite start",
