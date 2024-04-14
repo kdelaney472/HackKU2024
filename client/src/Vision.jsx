@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 import {Image, Listbox, ListboxItem} from "@nextui-org/react";
 import axios from 'axios' //for making call to vision api
+import DataContext from "./DataContext";
+import { useContext } from "react";
 import env from '../HuggingFace_API_KEY.json' //store your key here locally (DO NOT PUSH TO GITHUB)
 const API_KEY = env.API_KEY;
+
 
 function ImageSubmit() {
     const [imgFile, setFile] = useState(null);
     const [foodLabels, setLabels] = useState([]);
+    const {setDairy, setGluten, setShellfish, toggleData} = useContext(DataContext);
 
     const aiVisionScan = async (img) => {
         const apiURL = `https://api-inference.huggingface.co/models/Kaludi/food-category-classification-v2.0`;
@@ -22,6 +26,21 @@ function ImageSubmit() {
         };
         const response = await axios.post(apiURL, data, param);
         setLabels(response.data);
+    }
+
+    if (foodLabels != []) {
+        foodLabels.map((foodInfo, id) => {
+            if(foodInfo.label == "Bread"){
+                setGluten(Math.round(foodInfo.score * 10));
+            }
+            if(foodInfo.label == "Seafood"){
+                setShellfish(Math.round(foodInfo.score * 10));
+            }
+            if(foodInfo.label == "Dairy"){
+                setDairy(Math.round(foodInfo.score * 10));
+            }
+        })
+        toggleData(true);
     }
 
     useEffect( () => { //only runs when the image changes
@@ -45,6 +64,11 @@ function ImageSubmit() {
                     if (file) {
                     reader.readAsDataURL(file);
                     }
+
+                    setDairy(0);
+                    setGluten(0);
+                    setShellfish(0);
+                    toggleData(false);
                 }} />
                 {imgFile && (
                     <div>
@@ -75,21 +99,6 @@ function ImageSubmit() {
                     margin: 0;
                     }
                 `}</style>
-            </div>
-            <div>
-                {(foodLabels!=[]) && (
-                    <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-                        <Listbox aria-label="theFoodLabels">
-                            {foodLabels.map((foodInfo, id) => (
-                                <ListboxItem key={id} onClick={()=>(alert(foodInfo.label))}>
-                                    {id+"\t"}
-                                    {foodInfo.label+"\t"}
-                                    {foodInfo.score+"\t"}
-                                </ListboxItem>
-                            ))}
-                        </Listbox>
-                    </div>
-                )}
             </div>
         </div>
     );

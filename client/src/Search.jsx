@@ -20,7 +20,7 @@ function Search() {
     const [urls, setUrls] = useState([]);
     const [stats, setStats] = useState(null);
 
-    const { setDairy, setGluten, setPeanut, toggleData } = useContext(DataContext);
+    const { setDairy, setGluten, setShellfish, toggleData } = useContext(DataContext);
 
     const apiKey = env.API_KEY;
     const cx = '055b432b27df04bc1';
@@ -35,11 +35,11 @@ function Search() {
             stats.forEach(item => {
                 g = Math.max(g, item.gluten);
                 d = Math.max(d, item.dairy);
-                p = Math.max(p, item.peanuts);
+                p = Math.max(p, item.shellfish);
             });
             setDairy(d);
             setGluten(g);
-            setPeanut(p);
+            setShellfish(p);
             toggleData(true);
         }
         

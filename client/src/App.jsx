@@ -12,7 +12,7 @@ function App() {
 
   const [dairyRisk, sDairy] = useState(0);
   const [glutenRisk, sGluten] = useState(0);
-  const [peanutRisk, sPeanuts] = useState(0);
+  const [shellfishRisk, sShellfish] = useState(0);
   const [isData, setData] = useState(false);
 
 
@@ -25,8 +25,8 @@ function App() {
     sGluten(risk);
   }
 
-  const setPeanut = (risk) => {
-    sPeanuts(risk);
+  const setShellfish = (risk) => {
+    sShellfish(risk);
   }
 
   const toggleData = (b) => {
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <>
-      <DataContext.Provider value={{ dairyRisk, glutenRisk, peanutRisk, isData, setDairy, setGluten, setPeanut, toggleData }}>
+      <DataContext.Provider value={{ dairyRisk, glutenRisk, shellfishRisk, isData, setDairy, setGluten, setShellfish, toggleData }}>
       <NextUIProvider>
         <div 
           style={{
