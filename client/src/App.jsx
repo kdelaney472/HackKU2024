@@ -8,13 +8,14 @@ import Vision from './Vision'
 
 function App() {
 
+  //Context items to indicate data population
   const [dairyRisk, sDairy] = useState(0);
   const [glutenRisk, sGluten] = useState(0);
   const [shellfishRisk, sShellfish] = useState(0);
   const [isData, setData] = useState(false);
 
 
-
+  //Context heler functions
   const setDairy = (risk) => {
     sDairy(risk);
   }
@@ -32,7 +33,7 @@ function App() {
   }
 
   return (
-    <>
+    <> {/*DataContext and NextUIProvider both are providers for our custom data and TailwindCSS respectively*/}
       <DataContext.Provider value={{ dairyRisk, glutenRisk, shellfishRisk, isData, setDairy, setGluten, setShellfish, toggleData }}>
       <NextUIProvider>
         <div 
@@ -49,11 +50,13 @@ function App() {
               margin: "20% 10% 20% 10%",
             }}
           >
+            {/*Search is a simple component that handles the search button/box and its requests*/}
             <Search/>
           </div>
-        
+        {/*Vision handles the huggingFace call for AI picture recognition*/}
         <Vision/>
         </div>
+        {/*Results is a component of pie charts that gives a visual representation of allergen risks based on data from search or vision*/}
         <Results />
       </NextUIProvider>
       </DataContext.Provider>
