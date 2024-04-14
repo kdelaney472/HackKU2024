@@ -56,6 +56,7 @@ function App() {
         
         <Vision/>
         </div>
+        <Results />
       </NextUIProvider>
       </DataContext.Provider>
 

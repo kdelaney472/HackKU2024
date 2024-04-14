@@ -11,7 +11,7 @@ function Results() {
         <>
         {isData
         ?
-        <div height={500} display={"flex"}>
+        <div height={250} display={"flex"} id="pieCharts">
             <PieChart skipAnimation id='1'
             series={[
                 {
@@ -40,7 +40,7 @@ function Results() {
                     },
                 }}
             width={400}
-            height={500}
+            height={300}
             
         />
             <PieChart skipAnimation id='2'
