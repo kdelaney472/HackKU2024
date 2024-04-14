@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const path = require('path');
 
 
 
@@ -11,6 +10,8 @@ const PORT = process.env.PORT || 5000;
 let dairy = 0;
 let gluten = 0;
 let peanuts = 0;
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.use(cors()); 
 app.use(express.json());
