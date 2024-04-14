@@ -81,7 +81,7 @@ function Search() {
     return(
         <div>
         <div className="flex mb-10">
-            <img src={Logo} />
+            <img src={Logo} style={{ borderRadius: '10px' }} />
         </div>
         <div className="flex justify-center w-100">
             <div className="flex w-100 flex-wrap md:flex-nowrap padding-4px">
