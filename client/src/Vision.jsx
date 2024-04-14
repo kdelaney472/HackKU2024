@@ -78,7 +78,7 @@ function ImageSubmit() {
                 )}
                 {!imgFile && (
                     <div className="placeholder">
-                        <p>Click or drop an image file here</p>
+                        <p>Click to select image for detection</p>
                     </div>
                 )}
                 <style>{`
