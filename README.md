@@ -12,4 +12,4 @@ Currently, AllergiX supports 3 of the most common allergens:
 2. Dairy
 3. Shellfish
 
-[AllergiX is hosted on HeroKu] (https://allergix-107f0744c218.herokuapp.com/)
+[AllergiX is hosted on HeroKu](https://allergix-107f0744c218.herokuapp.com/)
