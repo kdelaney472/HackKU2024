@@ -1,13 +1,10 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const cheerio = require('cheerio');
-const { ScrapeUrls, ScrapeRecipes } = require('rethora-recipe-scraper');  
-const scraper = require('@excelespina/ingredient-scraper');
 
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 let dairy = 0;
 let gluten = 0;
@@ -15,6 +12,17 @@ let peanuts = 0;
 
 app.use(cors()); 
 app.use(express.json());
+
+app.get("/", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function(err) {
+      if(err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+}); 
 
 app.get('/scrape-recipe', async (req, res) => {
   let gluten = 0;
