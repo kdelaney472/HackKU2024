@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 let dairy = 0;
 let gluten = 0;
-let peanuts = 0;
+let shellfish = 0;
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
@@ -29,7 +29,7 @@ app.get("/", function (req, res) {
 app.get('/scrape-recipe', async (req, res) => {
   let gluten = 0;
   let dairy = 0;
-  let peanuts = 0;
+  let shellfish = 0;
 
   // Array to store promises for each fetch operation
 const fetchPromises = JSON.parse(req.query.array).map(async (element) => {
@@ -44,14 +44,14 @@ const fetchPromises = JSON.parse(req.query.array).map(async (element) => {
 
     // Check if the response data includes the desired substrings
 
-    if (axiosResponse.data.includes('bread')) {
+    if (axiosResponse.data.includes(' bread ')) {
       gluten++;
     } 
-    if (axiosResponse.data.includes('cheese')) {
+    if (axiosResponse.data.includes(' cheese ')) {
       dairy++;
     }
-    if (axiosResponse.data.includes('peanut')) {
-      peanuts++;
+    if (axiosResponse.data.includes(' shrimp ' )) {
+      shellfish++;
     }
 
     // Return an object containing the response data and the counts
@@ -60,7 +60,7 @@ const fetchPromises = JSON.parse(req.query.array).map(async (element) => {
       counts: {
         gluten,
         dairy,
-        peanuts
+        shellfish
       }
     };
   } catch (error) {
@@ -113,10 +113,10 @@ Promise.all(fetchPromises)
 //       dairy++;
 //     }
 //     if(axiosResponse.data.includes('peanut')){
-//       peanuts++;
+//       shellfish++;
 //     }
 //     r.push(axiosResponse);
-//     console.log(gluten, dairy, peanuts);
+//     console.log(gluten, dairy, shellfish);
 
 //   })
 
