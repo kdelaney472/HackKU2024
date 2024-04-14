@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 import doFetch from "../scraping/scraper";
 import Results from "./Results";
 import env from '../GoogleCloud_API_KEY.json' //store your key here locally (DO NOT PUSH TO GITHUB)
+import { useContext } from "react";
+import DataContext from "./DataContext";
 
 function Search() {
 
@@ -17,10 +19,8 @@ function Search() {
     const [query, setQuery] = useState('');
     const [urls, setUrls] = useState([]);
     const [stats, setStats] = useState(null);
-    const [dairy, setDairy] = useState(0);
-    const [gluten, setGluten] = useState(0);
-    const [peanuts, setPeanuts] = useState(0);
-    const [data, isData] = useState(false);
+
+    const { setDairy, setGluten, setPeanut, toggleData } = useContext(DataContext);
 
     const apiKey = env.API_KEY;
     const cx = '055b432b27df04bc1';
@@ -39,8 +39,8 @@ function Search() {
             });
             setDairy(d);
             setGluten(g);
-            setPeanuts(p);
-            isData(true);
+            setPeanut(p);
+            toggleData(true);
         }
         
     }, [stats]);
@@ -112,12 +112,6 @@ function Search() {
                 Search
             </Button>
             </form>
-            <>
-            {(data)
-            ?
-            <Results dairy={dairy} gluten={gluten} peanuts={peanuts}/>
-            : null}
-            </>
         </div>
     );
 

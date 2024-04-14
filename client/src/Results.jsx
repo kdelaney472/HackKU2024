@@ -1,15 +1,23 @@
 import { PieChart } from '@mui/x-charts/PieChart';
+import DataContext from './DataContext';
+import { useContext } from 'react';
 
-function Results({dairy, gluten, peanuts}) {
+function Results() {
 
+    const {dairyRisk, glutenRisk, peanutRisk, isData} = useContext(DataContext);
+
+    console.log(dairyRisk, glutenRisk, peanutRisk);
     return(
+        <>
+        {isData
+        ?
         <div height={500} display={"flex"}>
             <PieChart skipAnimation id='1'
             series={[
                 {
                     data: [
-                        { id: 0, value: dairy, color: "white", label: `Dairy: ${dairy*10}% Risk`},
-                        { id: 0, value: 10-dairy, color: "transparent"}
+                        { id: 0, value: dairyRisk, color: "white", label: `Dairy: ${dairyRisk*10}% Risk`},
+                        { id: 0, value: 10-dairyRisk, color: "transparent"}
                         
                     ],
                     fill: 'white',
@@ -39,8 +47,8 @@ function Results({dairy, gluten, peanuts}) {
                 series={[
                     {
                         data: [
-                            { id: 0, value: gluten, color: "brown", label: `Gluten: ${gluten * 10}% Risk` },
-                            { id: 0, value: 10 - gluten , color: "transparent" }
+                            { id: 0, value: glutenRisk, color: "brown", label: `Gluten: ${glutenRisk * 10}% Risk` },
+                            { id: 0, value: 10 - glutenRisk , color: "transparent" }
 
                         ],
                         fill: 'white',
@@ -70,8 +78,8 @@ function Results({dairy, gluten, peanuts}) {
                 series={[
                     {
                         data: [
-                            { id: 0, value: peanuts, color: "orange", label: `Peanuts : ${peanuts * 10}% Risk` },
-                            { id: 0, value: 10 -  peanuts , color: "transparent" }
+                            { id: 0, value: peanutRisk, color: "orange", label: `Peanuts : ${peanutRisk * 10}% Risk` },
+                            { id: 0, value: 10 -  peanutRisk , color: "transparent" }
 
                         ],
                         fill: 'white',
@@ -98,6 +106,9 @@ function Results({dairy, gluten, peanuts}) {
 
             />
         </div>
+        :
+        null}
+        </>
     );
 
 }
