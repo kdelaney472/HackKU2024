@@ -31,38 +31,66 @@ function ImageSubmit() {
     }, [imgFile])
  
     return (
-        <div className="imageSel">
-            <input type="file" onChange={(e)=>{
-                console.log(e.target.files);
-                const file = e.target.files[0];
-                const reader = new FileReader(); //sets to base64 format for being able to input into api later
+        <div>
+            <div  className="imageSel" onClick={()=>{document.getElementById("fileInput").click();}}>
+                <input id="fileInput" type="file" style={{ display: "none" }} onChange={(e)=>{
+                    console.log(e.target.files);
+                    const file = e.target.files[0];
+                    const reader = new FileReader(); //sets to base64 format for being able to input into api later
 
-                reader.onloadend = () => {
-                    setFile(reader.result);
-                };
+                    reader.onloadend = () => {
+                        setFile(reader.result);
+                    };
 
-                if (file) {
-                reader.readAsDataURL(file);
+                    if (file) {
+                    reader.readAsDataURL(file);
+                    }
+                }} />
+                {imgFile && (
+                    <div>
+                        <Image src={imgFile} />
+                    </div>
+                )}
+                {!imgFile && (
+                    <div className="placeholder">
+                        <p>Click or drop an image file here</p>
+                    </div>
+                )}
+                <style>{`
+                    .imageSel {
+                    border: 2px dashed #ccc;
+                    border-radius: 8px;
+                    padding: 40px 10px 40px 10px;
+                    text-align: center;
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0% 5% 0% 5%;
+                    background: rgba(70,92,118,0.2);
                 }
-            }} />
-            {imgFile && (
-                <div>
-                    <Image width={300} src={imgFile} />
-                </div>
-            )}
-            {(foodLabels!=[]) && (
-                <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
-                    <Listbox aria-label="theFoodLabels">
-                        {foodLabels.map((foodInfo, id) => (
-                            <ListboxItem key={id} onClick={()=>(alert(foodInfo.label))}>
-                                {id+"\t"}
-                                {foodInfo.label+"\t"}
-                                {foodInfo.score+"\t"}
-                            </ListboxItem>
-                        ))}
-                    </Listbox>
-                </div>
-            )}
+                    .placeholder {
+                    color: #444;
+                    }
+                    .placeholder p {
+                    margin: 0;
+                    }
+                `}</style>
+            </div>
+            <div>
+                {(foodLabels!=[]) && (
+                    <div className="w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100">
+                        <Listbox aria-label="theFoodLabels">
+                            {foodLabels.map((foodInfo, id) => (
+                                <ListboxItem key={id} onClick={()=>(alert(foodInfo.label))}>
+                                    {id+"\t"}
+                                    {foodInfo.label+"\t"}
+                                    {foodInfo.score+"\t"}
+                                </ListboxItem>
+                            ))}
+                        </Listbox>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
