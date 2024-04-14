@@ -11,42 +11,21 @@ function Results() {
         <>
         {isData
         ?
-        <div height={250} display={"flex"} id="pieCharts">
-            <PieChart skipAnimation id='1'
-            series={[
-                {
-                    data: [
-                        { id: 0, value: dairyRisk, color: "white", label: `Dairy: ${dairyRisk*10}% Risk`},
-                        
-                    ],
-                    fill: 'white',
-                    innerRadius: 30,
-                    outerRadius: 100,
-                    paddingAngle: 10,
-                    cornerRadius: 5,
-                    startAngle: 360,
-                    endAngle: 360 - (360 * dairyRisk * 0.1),
-                    cx: 150,
-                    cy: 150,
-                },
-            ]}
-                slotProps={{
-                    legend: {
-                        labelStyle: {
-                            fontSize: 14,
-                            fill: 'white',
-                        },
-                    },
-                }}
-            width={400}
-            height={500}
-            
-        />
-            <PieChart skipAnimation id='2'
+        <div>
+            <div style={{
+                display: 'flex',
+                height:"50vh",
+                //backgroundColor:"yellow", //testing purposes
+                flexWrap: 'nowrap', // Prevent wrapping
+                overflowX: 'auto', // Enable horizontal scrolling if content overflows
+            }} 
+            id="pieCharts">
+                <PieChart skipAnimation id='1'
                 series={[
                     {
                         data: [
-                            { id: 0, value: glutenRisk, color: "brown", label: `Gluten: ${glutenRisk * 10}% Risk` },
+                            { id: 0, value: dairyRisk, color: "white", label: `Dairy: ${dairyRisk*10}% Risk`},
+                            
                         ],
                         fill: 'white',
                         innerRadius: 30,
@@ -54,52 +33,90 @@ function Results() {
                         paddingAngle: 10,
                         cornerRadius: 5,
                         startAngle: 360,
-                        endAngle: 360 - (360 * glutenRisk * 0.1),
+                        endAngle: 360 - (360 * dairyRisk * 0.1),
                         cx: 150,
                         cy: 150,
                     },
                 ]}
-                slotProps={{
-                    legend: {
-                        labelStyle: {
-                            fontSize: 14,
-                            fill: 'white',
+                    slotProps={{
+                        legend: {
+                            labelStyle: {
+                                fontSize: 14,
+                                fill: 'white',
+                            },
                         },
-                    },
-                }}
-                width={400}
-                height={500}
-
+                    }}
+                // height={500}
+                
             />
-            <PieChart skipAnimation id='3'
-                series={[
-                    {
-                        data: [
-                            { id: 0, value: shellfishRisk, color: "orange", label: `Shellfish : ${shellfishRisk * 10}% Risk` },
-                        ],
-                        fill: 'white',
-                        innerRadius: 30,
-                        outerRadius: 100,
-                        paddingAngle: 10,
-                        cornerRadius: 5,
-                        startAngle: 360,
-                        endAngle: 360 - (360 * shellfishRisk * 0.1),
-                        cx: 150,
-                        cy: 150,
-                    },
-                ]}
-                slotProps={{
-                    legend: {
-                        labelStyle: {
-                            fontSize: 14,
+                <PieChart skipAnimation id='2'
+                    series={[
+                        {
+                            data: [
+                                { id: 0, value: glutenRisk, color: "brown", label: `Gluten: ${glutenRisk * 10}% Risk` },
+                            ],
                             fill: 'white',
+                            innerRadius: 30,
+                            outerRadius: 100,
+                            paddingAngle: 10,
+                            cornerRadius: 5,
+                            startAngle: 360,
+                            endAngle: 360 - (360 * glutenRisk * 0.1),
+                            cx: 150,
+                            cy: 150,
                         },
-                    },
-                }}
-                width={400}
-                height={500}
+                    ]}
+                    slotProps={{
+                        legend: {
+                            labelStyle: {
+                                fontSize: 14,
+                                fill: 'white',
+                            },
+                        },
+                    }}
+                    // height={500}
 
-            />
+                />
+            </div>
+            <div style={{
+                display: 'flex',
+                justifyContent: "center",
+                alignItems: "center",
+                //backgroundColor:"blue", //testing purposes
+                flexWrap: 'nowrap', // Prevent wrapping
+                overflowX: 'auto', // Enable horizontal scrolling if content overflows
+            }} 
+            id="pieCharts3">
+                <PieChart skipAnimation id='3'
+                    series={[
+                        {
+                            data: [
+                                { id: 0, value: shellfishRisk, color: "orange", label: `Shellfish : ${shellfishRisk * 10}% Risk` },
+                            ],
+                            fill: 'white',
+                            innerRadius: 30,
+                            outerRadius: 100,
+                            paddingAngle: 10,
+                            cornerRadius: 5,
+                            startAngle: 360,
+                            endAngle: 360 - (360 * shellfishRisk * 0.1),
+                            cx: 150,
+                            cy: 150,
+                        },
+                    ]}
+                    slotProps={{
+                        legend: {
+                            labelStyle: {
+                                fontSize: 14,
+                                fill: 'white',
+                            },
+                        },
+                    }}
+                    height={500}
+                    width={250}
+
+                />
+            </div>
         </div>
         :
         null}
